@@ -25,8 +25,7 @@ namespace GADE6112_Task_1.Classes
         public enum TileType
         {
             HERO,
-            ENEMY,
-            made,
+            ENEMY,         
             GOLD,
             WEAPON
 
