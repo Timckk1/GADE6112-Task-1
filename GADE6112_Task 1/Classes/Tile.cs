@@ -9,33 +9,49 @@ namespace GADE6112_Task_1.Classes
    
     abstract class Tile
     {
-
-        protected int X { get; set; }
-        protected int Y { get; set; }
-
-        
-
-        public Tile (int x, int y, string symbol)
-        {
-            this.X = x;
-            this.Y = y;
-           
-        }
-
         public enum TileType
         {
             HERO,
-            ENEMY,         
+            ENEMY,
             GOLD,
             WEAPON
 
         }
 
+        protected int x;
+        protected int y;
+        protected char symbol;
+
+        public int X
+        {
+            get { return x; }
+            set { x = value; }
+
+        }
+        public int Y
+        {
+            get { return y; }
+            set { y = value; }
+
+        }
+        public char Symbol
+        {
+            get { return symbol; }
+            set { symbol = value; }
+
+        }
+
+        public Tile (int x, int y, char sym)
+        {
+            X = x;
+            Y = y;
+            symbol = sym;
+        }
     }//Class Tile
 
     class Obstacle : Tile
     {
-        public Obstacle(int x, int y) : base(x, y,"")
+        public Obstacle(int x, int y) : base(x, y,'X')
         {
 
 
@@ -44,7 +60,7 @@ namespace GADE6112_Task_1.Classes
 
     class EmptyTile : Tile
     {
-        public EmptyTile(int x, int y) : base(x, y,"")
+        public EmptyTile(int x, int y) : base(x, y, ' ')
         {
 
 

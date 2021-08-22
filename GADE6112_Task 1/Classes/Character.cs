@@ -8,13 +8,27 @@ namespace GADE6112_Task_1.Classes
 {
     abstract class Character : Tile
     {
-        protected int HP, MaxHP, Damage;
+        protected Tile[] CharacterVisonArr;
 
-        public int _hp { get; set; }
-        public int _maxHP { get; set; }
-        public int _damage { get; set; }
+        protected int hp, maxHp, damage;
 
-        protected Tile[] CharacterVison;
+        public int range = 1;
+
+        public int HP
+        {
+            get { return hp; }
+            set { hp = value; }
+        }
+        public int MaxHP
+        {
+            get { return maxHp; }
+            set { maxHp = value; }
+        }
+        public int Damage
+        {
+            get { return damage; }
+            set { damage = value; }
+        }
 
         public enum Movement
         {
@@ -25,35 +39,71 @@ namespace GADE6112_Task_1.Classes
             RIGHT
         }
 
-        public Character(int x, int y,string symbol) : base(x, y,"")
+        public Character(int hp, int damage, int maxHp, int x, int y, char symbol) : base(x, y, symbol)
         {
+            this.hp = hp;
+            this.damage = damage;
+            this.maxHp = maxHp;
+        }
 
-
-        }// constructor
-
-        public virtual void Attack()
+        public virtual void Attack(Character target)
         {
-
+            target.hp -= damage;
         }
 
         public bool IsDead()
         {
-            return true;
+            if (hp <= 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public virtual bool CheckRange()
+        private int DistanceTo(Character target)
         {
-            return true;
+            return Math.Abs(X - target.X) + Math.Abs(Y - target.Y);
         }
 
-        private int DistanceTo()
+        public virtual bool CheckRange(Character target)
         {
-            return 0;
+            if (DistanceTo(target) <= range)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public void Move()
+        public void Move(Movement move)
         {
+            switch (move)
+            {
+                case Movement.IDLE:
+                    break;
 
+                case Movement.DOWN:
+                    Y -= 1;
+                    break;
+
+                case Movement.UP:
+                    Y += 1;
+                    break;
+
+                case Movement.LEFT:
+                    X -= 1;
+                    break;
+
+                case Movement.RIGHT:
+                    X += 1;
+                    break;
+
+            }
         }
 
         public abstract Movement ReturnMove(Movement move = 0);
