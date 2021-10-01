@@ -25,7 +25,17 @@ namespace GADE6112_Task_1.Classes
             bool validMove = false;
             Movement _movement = GetRandomMovement();
 
+            while (!validMove)
+            {
+                _movement = GetRandomMovement();
+                Type tileType = CharacterVisonArr[(int)_movement].GetType();
+                if (tileType != typeof(Obstacle))
+                {
+                    validMove = true;
+                }
+            }
 
+            return _movement;
         }
     }
 }

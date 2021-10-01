@@ -8,11 +8,17 @@ namespace GADE6112_Task_1.Classes
 {
     abstract class Character : Tile
     {
-        protected Tile[] CharacterVisonArr;
+        protected Tile[] characterVisonArr;
 
         protected int hp, maxHp, damage;
 
         public int range = 1;
+
+        public Tile[] CharacterVisonArr
+        {
+            get { return characterVisonArr; }
+            set { characterVisonArr = value; }
+        }
 
         public int HP
         {
@@ -88,11 +94,11 @@ namespace GADE6112_Task_1.Classes
                     break;
 
                 case Movement.DOWN:
-                    Y -= 1;
+                    Y += 1;
                     break;
 
                 case Movement.UP:
-                    Y += 1;
+                    Y -= 1;
                     break;
 
                 case Movement.LEFT:
